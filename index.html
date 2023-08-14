@@ -12,7 +12,16 @@
             <header class="header">
                 <h1 class="title">Etch-a-Sketch</h1>
             </header>
-            <container></container>
+            <container>
+                <div class="setting" id="setting">
+                    <div class="canvasSize"></div>
+                    <input id="sizeSlider" min="1" max="64" type="range" value="16">
+                    <input id="colorPicker" name="colorPicker" type="color" value="#000000">
+                    <button id="colorMode" type="button">Color Mode</button>
+                    <button id="clearCanvas" type="button">Clear</button>
+                </div>
+                <div class="canvas" id="canvas"></div>
+            </container>
             <footer class="footer">
                 <p>Copyright © 2023 @jayyzzeezzy</p>
             </footer>
