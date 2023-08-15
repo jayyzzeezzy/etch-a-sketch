@@ -36,24 +36,29 @@ function changeCurrentSize (newSize) {
 };
 
 function changeCurrentMode (newMode) {
+    triggerButton(newMode);
     currentMode = newMode;
 };
 
+// handles all size changing events
 function changeSize (canvasSize) {
     changeCurrentSize(canvasSize);
     updateSizeDisplay(canvasSize);
     resetCanvas();
 };
 
+// show user the size selection on canvas
 function updateSizeDisplay (value) {
     sizeDisplay.textContent = `${value} x ${value}`;
 };
 
+// reset canvas size and return a new canvas
 function resetCanvas () {
     clearCanvas();
     setupCanvas(currentSize);
 };
 
+// clear off everyting on canvas
 function clearCanvas () {
     canvas.innerHTML = '';
 };
@@ -72,6 +77,7 @@ function setupCanvas (canvasSize) {
     };
 };
 
+// change the color on brush
 function changeColor (e) {
     if (e.type === 'mouseover' && !mouseDown) return;
     if (currentMode === 'color') {
@@ -81,7 +87,24 @@ function changeColor (e) {
     };
 };
 
+// Button animation after click
+function triggerButton (newMode) {
+    if (currentMode === 'color') {
+        colorModeBtn.classList.remove('active');
+    } else if (currentMode === 'eraser') {
+        eraserModeBtn.classList.remove('active');
+    };
+
+    if (newMode === 'color') {
+        colorModeBtn.classList.add('active');
+    } else if (newMode === 'eraser') {
+        eraserModeBtn.classList.add('active');
+    };
+};
+
+// load up the default setting upon opening the page
 window.onload = () => {
     setupCanvas(DEFAULT_SIZE);
     updateSizeDisplay(DEFAULT_SIZE);
+    triggerButton(DEFAULT_MODE);
 };
