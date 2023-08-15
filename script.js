@@ -5,6 +5,14 @@ const DEFAULT_COLOR = "#000000";
 // UI variables
 const canvas = document.querySelector("#canvas");
 const sizeDisplay = document.querySelector(".canvasSize");
+const sliderValue = document.querySelector("#sizeSlider");
+
+// UI logic
+sliderValue.onmousemove = (e) => updateSizeDisplay(e.target.value);
+
+function updateSizeDisplay (value) {
+    sizeDisplay.textContent = `${value} x ${value}`;
+};
 
 function setupCanvas (canvasSize) {
     canvas.style.gridTemplateColumns = `repeat(${canvasSize}, 1fr)`;
