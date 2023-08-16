@@ -57,6 +57,16 @@ header {
     background-color: white;
 }
 
+button {
+    border: none;
+    background-color: white;
+    border-radius: 8px;
+    margin: 0px;
+    padding: 10px 20px;
+    width: 160px;
+    height: auto;
+}
+
 button.active {
     background-color: #737301;
     color: white;
