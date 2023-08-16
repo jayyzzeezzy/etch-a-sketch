@@ -8,6 +8,7 @@ const canvas = document.querySelector("#canvas");
 const sizeDisplay = document.querySelector(".canvasSize");
 const sliderValue = document.querySelector("#sizeSlider");
 const colorModeBtn = document.querySelector('#colorMode');
+const rainbowModeBtn = document.querySelector('#rainbowMode');
 const eraserModeBtn = document.querySelector('#eraserMode');
 const clearBtn = document.querySelector("#clearCanvas");
 const colorPicker = document.querySelector('#colorPicker');
@@ -23,6 +24,7 @@ document.body.onmouseup = () => (mouseDown = false);
 sliderValue.onmousemove = (e) => updateSizeDisplay(e.target.value);
 sliderValue.onchange = (e) => changeSize(e.target.value);
 colorModeBtn.onclick = () => changeCurrentMode('color');
+rainbowModeBtn.onclick = () => changeCurrentMode('rainbow');
 eraserModeBtn.onclick = () => changeCurrentMode('eraser');
 clearBtn.onclick = () => resetCanvas();
 colorPicker.oninput = (e) => changeCurrentColor(e.target.value);
@@ -82,6 +84,11 @@ function changeColor (e) {
     if (e.type === 'mouseover' && !mouseDown) return;
     if (currentMode === 'color') {
         e.target.style.backgroundColor = currentColor;
+    } else if (currentMode === 'rainbow') {
+        const randomR = Math.floor(Math.random() * 256);
+        const randomG = Math.floor(Math.random() * 256);
+        const randomB = Math.floor(Math.random() * 256);
+        e.target.style.backgroundColor = `rgb(${randomR}, ${randomG}, ${randomB})`;
     } else if (currentMode === 'eraser') {
         e.target.style.backgroundColor = '#ffffff';
     };
@@ -91,12 +98,16 @@ function changeColor (e) {
 function triggerButton (newMode) {
     if (currentMode === 'color') {
         colorModeBtn.classList.remove('active');
+    } else if (currentMode === 'rainbow') {
+        rainbowModeBtn.classList.remove('active');
     } else if (currentMode === 'eraser') {
         eraserModeBtn.classList.remove('active');
     };
 
     if (newMode === 'color') {
         colorModeBtn.classList.add('active');
+    } else if (newMode === 'rainbow') {
+        rainbowModeBtn.classList.add('active');
     } else if (newMode === 'eraser') {
         eraserModeBtn.classList.add('active');
     };
